@@ -1,0 +1,59 @@
+#head
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 130px;
+	background-color: #123456;
+	font-family: Old English Text MT;
+	font-size: 500%;
+	text-align: center;
+	text-shadow: rgba(0,0,0,0.5) 8px 8px 16px;
+	box-shadow: rgba(0,0,0,0.5) 8px 8px 16px;
+}
+#arena 
+{
+	text-align: center;
+	padding: 5px;
+	width: 805px;
+	height: 445px;
+}
+#glob
+{
+	position: absolute;
+	left: 140px;
+	top: 240px;
+	height: 500px;
+	width: 1000px;
+}
+#game-canvas 
+{
+	border: 3px inset rgba(0,0,80,0.62);
+	box-shadow: rgba(0,0,0,0.5) 8px 8px 16px;
+}
+
+#sound-and-music 
+{
+	position: absolute;
+	top: 495px;
+	margin-left: 10px;
+	color: #B22222;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.1);
+	border-radius: 5px;
+	border: thin solid rgba(0,0,0,0.20);
+	padding-top: 2px;
+	padding-bottom: 2px;
+	z-index: 1;
+}
+#copyright
+{
+	position: absolute;
+	top: 875px;
+	left: 490px;
+	text-align: center;
+	font-size: small;
+	font-weight: bold;
+	font-family: arial;
+}
