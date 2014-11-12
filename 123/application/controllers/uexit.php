@@ -6,7 +6,7 @@
 		{
 			$this->session->sess_destroy();
 			echo '<script type="text/javascript">
-            window.location.href = "/diplom/index.php/"
+            window.location.href = "/project/123/index.php/"
             </script>';
 		}
 	}

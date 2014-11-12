@@ -3,27 +3,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title></title>
-        <link rel="stylesheet" href="/application/assets/css/bootstrap.css">
-        <link rel="stylesheet" href="/application/assets/css/bootstrap-docs.css">
-        <link rel="stylesheet" href="/application/assets/css/style.css">
+        <link rel="stylesheet" href="/project/123/application/assets/css/bootstrap.css">
+        <link rel="stylesheet" href="/project/123/application/assets/css/bootstrap-docs.css">
+        <link rel="stylesheet" href="/project/123/application/assets/css/style.css">
     </head>
     <body>
         <div class="container">
-            <h1 class="center">Менеджер Задач</h1>
+            <h1 class="center">Менеджер Контента</h1>
             <div class="row">
             <?php if (isset($error)) echo $error; ?>
                 <div class="col-md-6 col-md-offset-3">
                     <div style="margin-bottom: 20px;">
-                        <a href="http://188.134.19.176:8001/index.php" class="btn btn-default">На главную</a>
-                        <a href="http://188.134.19.176:8001/index.php/my_tasks" class="btn btn-info">К списку задач</a>
+                        <a href="/project/123/index.php" class="btn btn-default">На главную</a>
+                        <a href="/project/123/index.php/my_tasks" class="btn btn-info">К списку заметок</a>
                     </div>
                     <?php if ($owner == 1) 
                     { 
                         ?>
-                    <h3>Редактировать задачу </h3>
+                    <h3>Редактировать заметку </h3>
                     <?php foreach ($resault as $row) 
                     { ?>
-                    <?php echo "<form class='form-horizontal' method = 'post' action = 'http://188.134.19.176:8001/index.php/manage_task/mng/".$tid."/".$owner."'>"; ?>
+                    <?php echo "<form class='form-horizontal' method = 'post' action = '/project/123/index.php/manage_task/mng/".$tid."/".$owner."'>"; ?>
                       <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Название</label>
                         <div class="col-sm-10">
@@ -49,24 +49,6 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Общее время</label>
-                        <div class="col-sm-10">
-                          <?php echo '<div class="alert alert-info center">'.$row['taskTime'].'</div>'; ?><span>ч.</span>
-                        </div>
-                      </div>
-                        <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">Результат</label>
-                        <div class="col-sm-10">
-                            <?php echo '<textarea class="form-control" name = "output">'.$row['output'].'</textarea>'?>
-                        </div>
-                      </div>
-                         <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Оставшееся время</label>
-                        <div class="col-sm-10">
-                           <?php echo "<input type='number' class='form-control' value = ".$row['progress']." name = 'progress'>"; ?><span>ч.</span>
-                        </div>
-                      </div>
-                      <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                           <button type="submit" class="btn btn-success">Редактировать</button>
                         </div>
@@ -76,7 +58,7 @@
                   }
                     else
                     { ?>
-                         <h3>Просмотр задачи</h3>
+                         <h3>Просмотр заметки</h3>
                        <?php foreach ($resault as $row) 
                    {?>
 
@@ -134,14 +116,14 @@
                     { ?>
                     <div class="row">
                         <div class="panel panel-default" style="width: 600px;">
-                          <div class="panel-heading"> <?php echo $row['email'];  if($row['idUser'] == $this->session->userdata('uid')) echo "<button type='submit' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-remove' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/manage_task/delete_comment/".$row['idcomment']."/".$tid."\"' /></i></button>";?> <!-- <small class="text-aligne: right">04.12.2014</small> --></div>
+                          <div class="panel-heading"> <?php echo $row['email'];  if($row['idUser'] == $this->session->userdata('uid')) echo "<button type='submit' class='btn btn-danger btn-xs'><i class='glyphicon glyphicon-remove' onclick = 'location.href=\"/project/123/index.php/manage_task/delete_comment/".$row['idcomment']."/".$tid."\"' /></i></button>";?> <!-- <small class="text-aligne: right">04.12.2014</small> --></div>
                           <div class="panel-body" >
                             <p><?php echo $row['commentary'];  ?></p>
                           </div>
                         </div>
                      <?php } ?>
                         <div class="panel panel-default">
-                        <?php echo "<form class='form-horizontal' method = 'post' action = 'http://188.134.19.176:8001/index.php/manage_task/new_comment/".$tid."'>"; ?>
+                        <?php echo "<form class='form-horizontal' method = 'post' action = '/project/123/index.php/manage_task/new_comment/".$tid."'>"; ?>
                             <div class="form-group" >
                                 <label for="inputPassword3" class="col-sm-2 control-label">Новый комментарий</label>
                                 <div class="col-sm-10">
@@ -180,9 +162,9 @@
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['endTime']; ?></td>
                                 <td><?php echo $row['progress']; if (isset($row['progress'])) echo 'ч.'; ?></td>
-                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"http://188.134.19.176:8001/index.php/my_tasks/done/".$row['idTask']."/".$owner."\" value='Завершить' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/my_tasks/done/".$row['idTask']."\"'>" ?></td>
-                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"http://188.134.19.176:8001/index.php/manage_task/manage/".$row['idTask']."/".$owner."\" value='Изменить' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/manage_task/manage/".$row['idTask']."/".$owner."\"'>" ?></td>
-                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"http://188.134.19.176:8001/index.php/my_tasks/delete/".$row['idTask']."/".$owner."\" value='Удалить' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/my_tasks/delete/".$row['idTask']."\"'>" ?></td>
+                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"/project/123/index.php/my_tasks/done/".$row['idTask']."/".$owner."\" value='Завершить' onclick = 'location.href=\"/project/123/index.php/my_tasks/done/".$row['idTask']."\"'>" ?></td>
+                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"/project/123/index.php/manage_task/manage/".$row['idTask']."/".$owner."\" value='Изменить' onclick = 'location.href=\"/project/123/index.php/manage_task/manage/".$row['idTask']."/".$owner."\"'>" ?></td>
+                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"/project/123/index.php/my_tasks/delete/".$row['idTask']."/".$owner."\" value='Удалить' onclick = 'location.href=\"/project/123/index.php/my_tasks/delete/".$row['idTask']."\"'>" ?></td>
                            </tr>
                         <?php }
                             else {?>
@@ -190,7 +172,7 @@
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['endTime']; ?></td>
                                 <td><?php echo $row['progress']; if (isset($row['progress'])) echo 'ч.'; ?></td>
-                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"http://188.134.19.176:8001/index.php/manage_task/manage/".$row['idTask']."/".$owner."\" value='Просмотр' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/manage_task/manage/".$row['idTask']."\"'>" ?> </td>
+                                <td> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"/project/123/index.php/manage_task/manage/".$row['idTask']."/".$owner."\" value='Просмотр' onclick = 'location.href=\"/project/123/index.php/manage_task/manage/".$row['idTask']."\"'>" ?> </td>
                                 <td></td>
                                 <td></td>
                                </tr>
@@ -199,7 +181,7 @@
                         } ?>
                          </tbody>
                     </table>
-                    <h3 class="center">Выполненные задачи</h3>
+                    <h3 class="center">Устаревшие заметки</h3>
                     <table class="table table-hover">
                         <thead>
                             <td><b>Название</b></td>
@@ -215,7 +197,7 @@
                             <tr>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['endTime']; ?></td>
-                                <td width="12%"> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"http://188.134.19.176:8001/index.php/my_tasks/delete/".$row['idTask']."/".$owner."\" value='Удалить' onclick = 'location.href=\"http://188.134.19.176:8001/index.php/my_tasks/delete/".$row['idTask']."\"'>" ?></td>
+                                <td width="12%"> <?php echo "<input type='submit' class='btn btn-danger btn-xs' formaction = \"/project/123/index.php/my_tasks/delete/".$row['idTask']."/".$owner."\" value='Удалить' onclick = 'location.href=\"/project/123/index.php/my_tasks/delete/".$row['idTask']."\"'>" ?></td>
                            </tr>
                         <?php }
                         }
@@ -226,15 +208,12 @@
                     </table>
                     <?php } ?>
                     <?php if ($owner == 1) { ?>
-                        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#newTask">
-  Создать новую подзадачу
-</button>
                   <?php } ?>
                     <!--</div>-->
                     <?php if ($resault['level'] == 0)
                     { ?>
-                    <h3>Предоставление доступа к задаче</h3>
-                    <?php echo "<form class='form-horizontal' method = 'post' action = 'http://188.134.19.176:8001/index.php/manage_task/share_task/".$tid."/".$owner."'>"; ?>
+                    <h3>Поделиться</h3>
+                    <?php echo "<form class='form-horizontal' method = 'post' action = '/project/123/index.php/manage_task/share_task/".$tid."/".$owner."'>"; ?>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-10">
@@ -258,10 +237,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Новая подзадача</h4>
+        <h4 class="modal-title" id="myModalLabel">Новая заметка</h4>
       </div>
       <div class="modal-body">
-        <?php echo "<form class='form-horizontal' method = 'post' action = 'http://188.134.19.176:8001/index.php/manage_task/new_subtask/".$tid."/".$owner."'>"; ?>
+        <?php echo "<form class='form-horizontal' method = 'post' action = '/project/123/index.php/manage_task/new_subtask/".$tid."/".$owner."'>"; ?>
                        <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label" >Название</label>
                         <div class="col-sm-10">
@@ -295,6 +274,6 @@
   </div>
 </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script type="text/javascript" src="/application/assets/js/bootstrap.js"></script>    
+        <script type="text/javascript" src="/project/123/application/assets/js/bootstrap.js"></script>    
     </body>
 </html>

@@ -7,7 +7,7 @@ class my_tasks extends CI_Controller
 	{
         if ($this->session->userdata('logged_in') != 'yes')
             echo '<script type="text/javascript">
-                window.location.href = "/index.php"
+                window.location.href = "/project/123/index.php"
                 </script>';
 		$this->load->model('my_tasks_m');
 		$data['resault'] = $this->my_tasks_m->get_utasks($this->session->userdata('email'));
@@ -31,8 +31,6 @@ class my_tasks extends CI_Controller
 		$arr['progress'] = $arr['taskTime'];
 		// Проверка формы на валидацию.
 	    $this->form_validation->set_rules('name', 'Название задачи', 'trim|required|xss_clean ');
-	    $this->form_validation->set_rules('endDate', 'Дата, к которой необходимо решить задачу', 'trim|required|xss_clean ');
-		$this->form_validation->set_rules('time', 'Время, требуемое для завершения задачи', 'required|greater_than[0]|integer|xss_clean ');
  
 	    if ($this->form_validation->run() == FALSE)
 	    {
@@ -47,7 +45,7 @@ class my_tasks extends CI_Controller
 			$this->load->model('my_tasks_m');
 			$this->my_tasks_m->insert_task($arr);
 			echo '<script type="text/javascript">
-                window.location.href = "/index.php/my_tasks"
+                window.location.href = "/project/123/index.php/my_tasks"
                 </script>';
 		}
 	}
@@ -56,7 +54,7 @@ class my_tasks extends CI_Controller
 		$this->load->model('my_tasks_m');
 		$this->my_tasks_m->del_task($id);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/my_tasks"
+                window.location.href = "/project/123/index.php/my_tasks"
                 </script>';
 	}
 	public function done($id)
@@ -64,7 +62,7 @@ class my_tasks extends CI_Controller
 		$this->load->model('my_tasks_m');
 		$this->my_tasks_m->done($id);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/my_tasks"
+                window.location.href = "/project/123/index.php/my_tasks"
                 </script>';
 	}
 	public function create($tid)
@@ -72,7 +70,7 @@ class my_tasks extends CI_Controller
 		$this->load->model('my_tasks_m');
 		$this->my_tasks_m->create($tid);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/my_tasks"
+                window.location.href = "/project/123/index.php/my_tasks"
                 </script>';
 	}
 	public function remove($tid)
@@ -80,7 +78,7 @@ class my_tasks extends CI_Controller
 		$this->load->model('my_tasks_m');
 		$this->my_tasks_m->remove($tid);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/my_tasks"
+                window.location.href = "/project/123/index.php/my_tasks"
                 </script>';
 	}
 }

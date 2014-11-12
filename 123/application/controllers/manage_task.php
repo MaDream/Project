@@ -12,7 +12,7 @@ class manage_task extends CI_Controller
 	{
 		if ($this->session->userdata('logged_in') != 'yes')
             echo '<script type="text/javascript">
-                window.location.href = "/index.php"
+                window.location.href = "/project/123/index.php"
                 </script>';
         $this->session->set_userdata(array(
                             'email'         => $this->session->userdata('email'),
@@ -21,7 +21,7 @@ class manage_task extends CI_Controller
                             'uid'			=> $this->session->userdata('uid'),
                             'tid'			=> $tid
                     ));
-		$data['title'] = 'Редактировать задачу';
+		$data['title'] = 'Редактировать заметку';
 		$this->load->model('manage_task_m');
 		$data['resault'] = $this->manage_task_m->get_task_data($tid);
 		$data['subtasks'] = $this->manage_task_m->get_subtasks($tid);
@@ -44,7 +44,7 @@ class manage_task extends CI_Controller
                     'output' => $this->input->post('output'),
                     'progress' => $this->input->post('progress')
              );
-	    $this->form_validation->set_rules('name', 'Название задачи', 'required|xss_clean ');
+	    $this->form_validation->set_rules('name', 'Название заметки', 'required|xss_clean ');
 	    $this->form_validation->set_rules('specification', 'Описание', 'xss_clean ');
 		$this->form_validation->set_rules('endDate', 'Дата окончания', 'required|xss_clean ');
 		$this->form_validation->set_rules('taskTime', 'Время на выполнение', 'required|xss_clean ');
@@ -69,7 +69,7 @@ class manage_task extends CI_Controller
 	    	$this->load->model('manage_task_m');
 	    	$this->manage_task_m->update_task($arr, $tid);
 	    	echo '<script type="text/javascript">
-                window.location.href = "/index.php/manage_task/manage/'.$tid.'"
+                window.location.href = "/project/123/index.php/manage_task/manage/'.$tid.'"
                 </script>';
 		}
 	}
@@ -99,7 +99,7 @@ class manage_task extends CI_Controller
 		}
 		else
 		{
-		    $this->form_validation->set_rules('name', 'Название задачи', 'trim|required|xss_clean ');
+		    $this->form_validation->set_rules('name', 'Название заметки', 'trim|required|xss_clean ');
 		    $this->form_validation->set_rules('endDate', 'Дата, к которой необходимо решить задачу', 'trim|required|xss_clean ');
 			$this->form_validation->set_rules('time', 'Время, требуемое для завершения задачи', 'required|integer|xss_clean ');
 	 
@@ -120,7 +120,7 @@ class manage_task extends CI_Controller
 		    {
 				$this->manage_task_m->insert_subtask($arr, $tid);
 				echo '<script type="text/javascript">
-	                window.location.href = "/index.php/manage_task/manage/'.$tid.'"
+	                window.location.href = "/project/123/index.php/manage_task/manage/'.$tid.'"
 	                </script>';
 			}
 		}
@@ -132,7 +132,7 @@ class manage_task extends CI_Controller
 		$this->load->model('manage_task_m');
 		$this->manage_task_m->insert_comment($arr);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/manage_task/manage/'.$tid.'"
+                window.location.href = "/project/123/index.php/manage_task/manage/'.$tid.'"
                 </script>';
 	}
 	public function delete_comment($cid, $tid, $owner = 0)
@@ -140,7 +140,7 @@ class manage_task extends CI_Controller
 		$this->load->model('manage_task_m');
 		$this->manage_task_m->del_comment($cid);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/manage_task/manage/'.$tid.'"
+                window.location.href = "/project/123/index.php/manage_task/manage/'.$tid.'"
                 </script>';
 	}
 	public function share_task($tid, $owner = 0)
@@ -149,7 +149,7 @@ class manage_task extends CI_Controller
 		$this->load->model('manage_task_m');
 		$this->manage_task_m->share($tid, $email);
 		echo '<script type="text/javascript">
-                window.location.href = "/index.php/manage_task/manage/'.$tid.'"
+                window.location.href = "/project/123/index.php/manage_task/manage/'.$tid.'"
                 </script>';
 	}
 }

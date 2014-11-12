@@ -1,6 +1,4 @@
 <?php
-
-if (!defined('BASEPATH')) exit('No direct script access allowed');
  
 class mAuth extends CI_Model {
  
@@ -29,7 +27,7 @@ class mAuth extends CI_Model {
         if ($check_auth != true) 
         {
                 echo '<script type="text/javascript">
-                window.location.href = "/diplom/index.php"
+                window.location.href = "/project/123/index.php"
                 </script>';
         }
         else 

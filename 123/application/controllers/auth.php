@@ -1,6 +1,5 @@
 ﻿<?php
-error_reporting(0);
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+error_reporting(1);
 	
 	class auth extends CI_Controller 
 	{
@@ -9,10 +8,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 		{
 			if ($this->session->userdata('logged_in') == 'yes')
             echo '<script type="text/javascript">
-                window.location.href = "/index.php"
+                window.location.href = "/project/123/index.php"
                 </script>';
-			$data['title']='Форма авторизации';
-	        	$this->load->view('vAuth',$data);
+            else
+            	if (!$data['error'])
+            	{
+					$data['title']='Форма авторизации';
+	        		$this->load->view('vauth',$data);
+	        	}
 		}
 		public function auth_user()
 		{
@@ -26,7 +29,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         	$query_check_user = $this->db->get('user');
         	$userdata = $query_check_user->result_array();
         	$nick = $userdata[0]['nickname'];
-			if ($this->mAuth->user_verify($arr['email'], $arr['password'])){
+			if ($this->mauth->user_verify($arr['email'], $arr['password']))
+			{
                 $this->session->set_userdata(array(
                             'email'         => $arr['email'],
                             'logged_in'     => 'yes',
@@ -36,13 +40,13 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                 // Добавляем данные в сессию
                 $this->session->set_userdata($authdata);
                 echo '<script type="text/javascript">
-                window.location.href = "/index.php/"
+                window.location.href = "/project/123/index.php/"
                 </script>';
             }
             else 
             {
             	$data['error'] = "Неверный логин или пароль.";
-            	$this->load->view('vAuth',$data);
+            	$this->load->view('vauth',$data);
             }
 		}
  	}

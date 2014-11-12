@@ -1,5 +1,5 @@
 ﻿<?php
- error_reporting(0);
+ error_reporting(1);
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class reg extends CI_Controller {
@@ -40,15 +40,15 @@ class reg extends CI_Controller {
 	// Подключаем модель которая будет обрабатывать запросы
 	$this->load->model('mreg');
             // Если пользователь с таким логином не найден
-            if ($this->mReg->user_verify($arr['email'])){
+            if ($this->mreg->user_verify($arr['email'])){
                 // Создаем массив с данными сессии и записываем нового пользователя в БД
  
 	    // Добавляем данные о пользователе в БД
 	    
-        	    $this->mReg->insert('user',$arr);
+        	    $this->mreg->insert('user',$arr);
                 // Редериктим на нужную нам страницу
                 echo '<script type="text/javascript">
-                window.location.href = "/index.php"
+                window.location.href = "/project/123/index.php"
                 </script>';
             }
             // Если пользователь существует отправляем его заполнять форму заново
