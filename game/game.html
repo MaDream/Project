@@ -1,10 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>DemoGame</title>
-</head>
-<body>
- <canvas id="canvas" style="border:1px solid #000"></canvas>
- <script src="js/somescript.js"></script>
-</body>
+    <head>
+        <meta charset = "utf-8">
+        <style>
+            @import"css/Game.css";
+        </style>
+    </head>
+    <body>
+    <div class = "head">
+        <font color = "#ffffff">Unleashed Challenge</font>
+    </div>
+    <div class="glob">
+        <canvas id='game-canvas' width='1000' height='500'>
+            Your browser doesn't support HTML5 Canvas.
+        </canvas>
+        <script src="js/legacyGame.js"></script>
+    </div>
+    <style>
+        body
+        {
+            background-color: #483D8B;
+        }
+    </style>
+    </body>
 </html>

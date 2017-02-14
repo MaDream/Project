@@ -3,17 +3,20 @@
     window.requestAnimationFrame = requestAnimationFrame;
 })();
 
-var 
+function getRandom(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+}
+
+var
   canvas = document.getElementById("game-canvas");
   context = canvas.getContext("2d");
 
-  PLATFORM_HEIGHT = 8;
   PLATFORM_STROKE_WIDTH = 2;
   PLATFORM_STROKE_STYLE = 'rgb(0,0,0)';
 
-  TRACK_1_BASELINE = 323;
-  TRACK_2_BASELINE = 223;
-  TRACK_3_BASELINE = 123;
+  GROUND_HEIGHT = 40;
+
+  TRACK_COUNT = getRandom(11, 16);
 
   SCORE = 0;
 
@@ -54,44 +57,16 @@ player = {
     velX : 0,
     velY : 0
 };
-platformData = [
+platformData =
     {
-        left: 10,
-        width: 230,
-        height: PLATFORM_HEIGHT,
+        baseline: 0,
+        left: 0,
+        width: 0,
+        height: 0,
         fillStyle: 'rgb(255,255,0)',
         opacity: 0.5,
-        track: 1,
         pulsate: false
-    },
-
-    {  left: 250,
-        width: 100,
-        height: PLATFORM_HEIGHT,
-        fillStyle: 'rgb(150,190,255)',
-        opacity: 1.0,
-        track: 2,
-        pulsate: false
-    },
-
-    {  left: 400,
-        width: 125,
-        height: PLATFORM_HEIGHT,
-        fillStyle: 'rgb(250,0,0)',
-        opacity: 1.0,
-        track: 3,
-        pulsate: false
-    },
-
-    {  left: 633,
-        width: 100,
-        height: PLATFORM_HEIGHT,
-        fillStyle: 'rgb(255,255,0)',
-        opacity: 1.0,
-        track: 1,
-        pulsate: false
-    }
-];
+    };
 keys = [];
 friction = 0.8;
 gravity = 3;
@@ -116,40 +91,37 @@ function drawBackground()
    context.drawImage(gameGS.background, 0, 0);
 }
 
-function calculatePlatformTop(track) 
-{
-   var top;
-
-   if      (track === 1) { top = TRACK_1_BASELINE; }
-   else if (track === 2) { top = TRACK_2_BASELINE; }
-   else if (track === 3) { top = TRACK_3_BASELINE; }
-
-   return top;
-}
-
 function drawPlatforms() 
 {
-   var pd, top;
+   var pd;
 
    context.save(); // Сохранение атрибутов контекста в стеке
 
-   for (var i = 0; i < platformData.length; ++i) {
-      pd = platformData[i];
-      top = calculatePlatformTop(pd.track);
+    //PLATFORM_DATA to randomize
+    /*left: 0,
+    width: 0,
+    height: 0
+    baseline*/
+
+   for (var i = 0; i < TRACK_COUNT; ++i) {
+      pd = platformData;
+
+      pd.left = getRandom(5, 400);
+      pd.width = getRandom(33, 101);
+      pd.height = getRandom(5, 26);
+      pd.baseline = getRandom(10, 180);
 
       context.lineWidth = PLATFORM_STROKE_WIDTH;
       context.strokeStyle = PLATFORM_STROKE_STYLE;
       context.fillStyle = pd.fillStyle;
       context.globalAlpha = pd.opacity;
 
-      context.strokeRect(pd.left, top, pd.width, pd.height);
-      context.fillRect  (pd.left, top, pd.width, pd.height);
+      context.strokeRect(pd.left, pd.baseline, pd.width, pd.height);
+      context.fillRect  (pd.left, pd.baseline, pd.width, pd.height);
    }
-for (var y = 425; y < 500; y += 37)
-      for (var x = 0; x < 1000; x += 37)
-      {
-        context.drawImage(gameGS.texture1, x, y)
-      }
+    for (var y = 425; y < 500; y += 37)
+        for (var x = 0; x < 1000; x += 37)
+            context.drawImage(gameGS.texture1, x, y)
    context.restore(); // Восстановление атрибутов контекста
 }
 
